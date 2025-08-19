@@ -20,35 +20,41 @@ export default function Portfolio() {
       : portfolioItems.filter((item) => item.category === filter);
 
   return (
-    <div className="px-4 py-8 max-w-6xl mx-auto">
-      <Navbar onFilter={setFilter} />
+    <div className="bg-[#F1F2F3] min-h-screen px-4 py-8">
+      <div className="max-w-6xl mx-auto">
+        {/* Navbar for filtering */}
+        <Navbar onFilter={setFilter} />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <AnimatePresence>
-          {filteredItems.map((item) => (
-            <motion.div
-              key={item.id}
-              layout
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.3 }}
-              className="relative overflow-hidden rounded-lg shadow-lg group"
-            >
-              {/* Image */}
-              <img
-                src={item.img}
-                alt={item.title}
-                className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110 group-hover:blur-sm"
-              />
+        {/* Responsive Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">
+          <AnimatePresence>
+            {filteredItems.map((item) => (
+              <motion.div
+                key={item.id}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+                className="relative overflow-hidden rounded-lg shadow-lg group"
+              >
+                {/* Image with blur on hover */}
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  className="w-full h-48 md:h-60 object-cover transition-transform duration-300 group-hover:scale-110 group-hover:blur-sm"
+                />
 
-              {/* Overlay title */}
-              <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <span className="text-white font-bold text-lg">{item.title}</span>
-              </div>
-            </motion.div>
-          ))}
-        </AnimatePresence>
+                {/* Overlay title */}
+                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <span className="text-white font-bold text-lg md:text-xl text-center px-2">
+                    {item.title}
+                  </span>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
       </div>
     </div>
   );
