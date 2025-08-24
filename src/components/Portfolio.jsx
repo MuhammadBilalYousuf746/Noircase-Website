@@ -5,10 +5,10 @@ import Navbar from "./Navbar";
 // Sample portfolio items
 const portfolioItems = [
   { id: 1, title: "Branding 1", category: "Branding", img: "/images/img1.jpg" },
-  { id: 2, title: "UI 1", category: "UI", img: "/images/img2.jpg" },
-  { id: 3, title: "Web 1", category: "Web", img: "/images/img3.jpg" },
+  { id: 2, title: "UI 1", category: "UIUX", img: "/images/img2.jpg" },
+  { id: 3, title: "Web 1", category: "Packaging", img: "/images/img3.jpg" },
   { id: 4, title: "Branding 2", category: "Branding", img: "/images/img4.jpg" },
-  { id: 5, title: "Illustration 1", category: "Illustration", img: "/images/img5.jpg" },
+  { id: 5, title: "Illustration 1", category: "Web Designs", img: "/images/img5.jpg" },
 ];
 
 export default function Portfolio() {
@@ -20,7 +20,7 @@ export default function Portfolio() {
       : portfolioItems.filter((item) => item.category === filter);
 
   return (
-    <div className="bg-[#F1F2F3] min-h-screen px-4 py-8">
+    <div className="bg-black text-white shadow-md min-h-screen px-4 py-8">
       <div className="max-w-6xl mx-auto">
         {/* Navbar for filtering */}
         <Navbar onFilter={setFilter} />
@@ -51,9 +51,17 @@ export default function Portfolio() {
                     {item.title}
                   </span>
                 </div>
+                
               </motion.div>
             ))}
           </AnimatePresence>
+        </div>
+        
+      <div className="flex justify-center gap-4">
+        <button className="bg-gray-500 text-white font-semibold px-4 py-2 rounded-md  hover:bg-white hover:text-black transition">
+  Explore all Projects
+</button>
+
         </div>
       </div>
     </div>
