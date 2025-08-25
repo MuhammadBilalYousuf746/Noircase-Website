@@ -2,10 +2,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu } from "lucide-react";
 import { motion, useViewportScroll, useTransform } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
+import InformationContent from "./InformationContent";
 
 const workCategories = ["All", "Branding", "UIUX", "Web Designs", "Packaging"];
-const infoCategories = ["About", "Team", "Process", "Contact"];
-
 export default function Navbar({ onFilter }) {
   const [active, setActive] = useState("All");
   const [openMenu, setOpenMenu] = useState("Work"); 
@@ -123,52 +123,81 @@ export default function Navbar({ onFilter }) {
 
       </div>
 
-      {/* Row 2: Work & Information Options */}
-      <div className="flex flex-wrap justify-center gap-4 sm:gap-8 py-1 sm:py-2 border-t border-gray-700 text-sm sm:text-base">
-        <button
-          className={`font-semibold transition-colors duration-300 ${
-            openMenu === "Work" ? "text-white border-b-2 border-white" : "text-gray-400 hover:text-white"
-          }`}
-          onClick={() => setOpenMenu("Work")}
-        >
-          Work
-        </button>
-        <button
-          className={`font-semibold transition-colors duration-300 ${
-            openMenu === "Information" ? "text-white border-b-2 border-white" : "text-gray-400 hover:text-white"
-          }`}
-          onClick={() => setOpenMenu("Information")}
-        >
-          Information
-        </button>
-      </div>
+{/* Row 2: Work & Information Options */}
+<div className="flex flex-wrap justify-center gap-4 sm:gap-8 py-1 sm:py-2 border-t border-gray-700 text-sm sm:text-base">
+  <button
+    className={`font-semibold transition-colors duration-300 ${
+      openMenu === "Work" ? "text-white border-b-2 border-white" : "text-gray-400 hover:text-white"
+    }`}
+    onClick={() => {
+      setOpenMenu("Work");
+      setActive("All"); // reset active to default Work
+    }}
+  >
+    Work
+  </button>
+
+  <button
+    className={`font-semibold transition-colors duration-300 ${
+      openMenu === "Information" ? "text-white border-b-2 border-white" : "text-gray-400 hover:text-white"
+    }`}
+    onClick={() => {
+      setOpenMenu("Information");
+      setActive("About"); // automatically select About when Information opens
+    }}
+  >
+    Information
+  </button>
+</div>
 
       {/* Row 3: Sub Navbar (Work / Information) */}
-      <div className="flex flex-wrap justify-center gap-3 sm:gap-6 py-2 text-xs sm:text-sm md:text-base transition-all duration-500 ease-in-out">
-        {openMenu === "Work" &&
-          workCategories.map((category) => (
-            <button
-              key={category}
-              onClick={() => handleClick(category)}
-              className={`transition-colors duration-300 ${
-                active === category ? "text-white font-semibold" : "text-gray-400 hover:text-white"
-              }`}
-            >
-              {category}
-            </button>
-          ))}
+{/* Row 3: Sub Navbar (Work / Information) */}
+<div className="flex flex-wrap justify-center gap-3 sm:gap-6 py-2 text-xs sm:text-sm md:text-base transition-all duration-500 ease-in-out">
+  {openMenu === "Work" &&
+    workCategories.map((category) => (
+      <button
+        key={category}
+        onClick={() => handleClick(category)}
+        className={`transition-colors duration-300 ${
+          active === category ? "text-white font-semibold" : "text-gray-400 hover:text-white"
+        }`}
+      >
+        {category}
+      </button>
+    ))}
 
-        {openMenu === "Information" &&
-          infoCategories.map((info) => (
-            <Link
-              key={info}
-              to={`/${info.toLowerCase()}`}
-              className="text-gray-400 hover:text-white transition-colors duration-300"
-            >
-              {info}
-            </Link>
-          ))}
-      </div>
+  {openMenu === "Information" &&
+    ["About", "Team", "Process", "Contact"].map((info) => (
+      <button
+        key={info}
+        onClick={() => setActive(info)}
+        className={`px-3 py-1 rounded-md transition-colors duration-300 ${
+          active === info ? "text-white font-semibold border-b-2 border-white" : "text-gray-400 hover:text-white"
+        }`}
+      >
+        {info}
+      </button>
+    ))}
+</div>
+<AnimatePresence mode="wait">
+  {openMenu === "Work" && (
+    <motion.div
+      key="workContent"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.3 }}
+      className="px-4 sm:px-6 md:px-8 py-6 max-w-5xl mx-auto text-white"
+    >
+    </motion.div>
+  )}
+
+  {openMenu === "Information" && (
+    <InformationContent key="infoContent" selected={active} />
+  )}
+</AnimatePresence>
+
     </div>
+    
   );
 }
