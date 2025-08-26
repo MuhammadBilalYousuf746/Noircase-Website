@@ -2,18 +2,13 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu } from "lucide-react";
 import { motion, useViewportScroll, useTransform } from "framer-motion";
-import { AnimatePresence } from "framer-motion";
-import InformationContent from "./InformationContent";
 
 const workCategories = ["All", "Branding", "UIUX", "Web Designs", "Packaging"];
-export default function Navbar({ onFilter }) {
-  const [active, setActive] = useState("All");
-  const [openMenu, setOpenMenu] = useState("Work"); 
+
+export default function Navbar({ onFilter, openMenu, setOpenMenu, active, setActive }) {
   const [menuOpen, setMenuOpen] = useState(false); 
 
-    const { scrollY } = useViewportScroll();
-
-  // Fade out and move up as scrollY increases
+  const { scrollY } = useViewportScroll();
   const opacity = useTransform(scrollY, [0, 200], [1, 0]);
   const y = useTransform(scrollY, [0, 200], [0, -50]);
 
@@ -37,7 +32,6 @@ export default function Navbar({ onFilter }) {
             <b>noir</b>case
           </h1>
         </div>
-
 
         {/* Menu Toggle */}
         <div className="relative">
@@ -64,6 +58,7 @@ export default function Navbar({ onFilter }) {
               }`}
               onClick={() => {
                 setOpenMenu("Work");
+                setActive("All");
                 setMenuOpen(false);
               }}
             >
@@ -78,6 +73,7 @@ export default function Navbar({ onFilter }) {
               }`}
               onClick={() => {
                 setOpenMenu("Information");
+                setActive("About");
                 setMenuOpen(false);
               }}
             >
@@ -95,109 +91,89 @@ export default function Navbar({ onFilter }) {
         </div>
       </div>
 
- {/* Text section with 4 lines and 2 buttons */}
+      {/* Text Section */}
       <div className="px-4 sm:px-6 md:px-8 py-6 text-center max-w-3xl mx-auto">
-     <motion.div style={{ opacity, y }} className="px-4 sm:px-6 md:px-8 py-6 text-center max-w-3xl mx-auto">
-      <h1 className="text-gray-400 text-2xl sm:text-3xl md:text-4xl mb-2 font-bold">
-        We're Creative Agency
-      </h1>
-      <h1 className="text-gray-400 text-2xl sm:text-3xl md:text-4xl mb-2 font-bold">
-        Turning Idea into <span className="text-white">Business</span>
-      </h1>
-      <p className="text-white text-sm sm:text-base md:text-lg mb-2">
-        We're creative agency crafting timeless brands and seamless digital experiences.
-      </p>
-      <p className="text-white text-sm sm:text-base md:text-lg mb-4">
-        From brand identity to websites, we design strategy, clarity and impact.
-      </p>
+        <motion.div style={{ opacity, y }} className="px-4 sm:px-6 md:px-8 py-6 text-center max-w-3xl mx-auto">
+          <h1 className="text-gray-400 text-2xl sm:text-3xl md:text-4xl mb-2 font-bold">
+            We're Creative Agency
+          </h1>
+          <h1 className="text-gray-400 text-2xl sm:text-3xl md:text-4xl mb-2 font-bold">
+            Turning Idea into <span className="text-white">Business</span>
+          </h1>
+          <p className="text-white text-sm sm:text-base md:text-lg mb-2">
+            We're creative agency crafting timeless brands and seamless digital experiences.
+          </p>
+          <p className="text-white text-sm sm:text-base md:text-lg mb-4">
+            From brand identity to websites, we design strategy, clarity and impact.
+          </p>
 
-      <div className="flex justify-center gap-4">
-        <button className="bg-white text-black font-semibold px-4 py-2 rounded-md border border-white hover:bg-black hover:text-white transition">
-          Explore Projects
+          <div className="flex justify-center gap-4">
+            <button className="bg-white text-black font-semibold px-4 py-2 rounded-md border border-white hover:bg-black hover:text-white transition">
+              Explore Projects
+            </button>
+            <button className="bg-black text-white font-semibold px-4 py-2 rounded-md border border-white hover:bg-white hover:text-black transition">
+              Book a Call
+            </button>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Row 2: Work & Information Options */}
+      <div className="flex flex-wrap justify-center gap-4 sm:gap-8 py-1 sm:py-2 border-t border-gray-700 text-sm sm:text-base">
+        <button
+          className={`font-semibold transition-colors duration-300 ${
+            openMenu === "Work" ? "text-white border-b-2 border-white" : "text-gray-400 hover:text-white"
+          }`}
+          onClick={() => {
+            setOpenMenu("Work");
+            setActive("All");
+          }}
+        >
+          Work
         </button>
-        <button className="bg-black text-white font-semibold px-4 py-2 rounded-md border border-white hover:bg-white hover:text-black transition">
-          Book a Call
+
+        <button
+          className={`font-semibold transition-colors duration-300 ${
+            openMenu === "Information" ? "text-white border-b-2 border-white" : "text-gray-400 hover:text-white"
+          }`}
+          onClick={() => {
+            setOpenMenu("Information");
+            setActive("About");
+          }}
+        >
+          Information
         </button>
       </div>
-    </motion.div>
 
+      {/* Row 3: Sub Navbar */}
+      <div className="flex flex-wrap justify-center gap-3 sm:gap-6 py-2 text-xs sm:text-sm md:text-base transition-all duration-500 ease-in-out">
+        {openMenu === "Work" &&
+          workCategories.map((category) => (
+            <button
+              key={category}
+              onClick={() => handleClick(category)}
+              className={`transition-colors duration-300 ${
+                active === category ? "text-white font-semibold" : "text-gray-400 hover:text-white"
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+
+        {openMenu === "Information" &&
+          ["About", "Team", "Process", "Contact"].map((info) => (
+            <button
+              key={info}
+              onClick={() => setActive(info)}
+              className={`px-3 py-1 rounded-md transition-colors duration-300 ${
+                active === info ? "text-white font-semibold border-b-2 border-white" : "text-gray-400 hover:text-white"
+              }`}
+            >
+              {info}
+            </button>
+          ))}
       </div>
-
-{/* Row 2: Work & Information Options */}
-<div className="flex flex-wrap justify-center gap-4 sm:gap-8 py-1 sm:py-2 border-t border-gray-700 text-sm sm:text-base">
-  <button
-    className={`font-semibold transition-colors duration-300 ${
-      openMenu === "Work" ? "text-white border-b-2 border-white" : "text-gray-400 hover:text-white"
-    }`}
-    onClick={() => {
-      setOpenMenu("Work");
-      setActive("All"); // reset active to default Work
-    }}
-  >
-    Work
-  </button>
-
-  <button
-    className={`font-semibold transition-colors duration-300 ${
-      openMenu === "Information" ? "text-white border-b-2 border-white" : "text-gray-400 hover:text-white"
-    }`}
-    onClick={() => {
-      setOpenMenu("Information");
-      setActive("About"); // automatically select About when Information opens
-    }}
-  >
-    Information
-  </button>
-</div>
-
-      {/* Row 3: Sub Navbar (Work / Information) */}
-{/* Row 3: Sub Navbar (Work / Information) */}
-<div className="flex flex-wrap justify-center gap-3 sm:gap-6 py-2 text-xs sm:text-sm md:text-base transition-all duration-500 ease-in-out">
-  {openMenu === "Work" &&
-    workCategories.map((category) => (
-      <button
-        key={category}
-        onClick={() => handleClick(category)}
-        className={`transition-colors duration-300 ${
-          active === category ? "text-white font-semibold" : "text-gray-400 hover:text-white"
-        }`}
-      >
-        {category}
-      </button>
-    ))}
-
-  {openMenu === "Information" &&
-    ["About", "Team", "Process", "Contact"].map((info) => (
-      <button
-        key={info}
-        onClick={() => setActive(info)}
-        className={`px-3 py-1 rounded-md transition-colors duration-300 ${
-          active === info ? "text-white font-semibold border-b-2 border-white" : "text-gray-400 hover:text-white"
-        }`}
-      >
-        {info}
-      </button>
-    ))}
-</div>
-<AnimatePresence mode="wait">
-  {openMenu === "Work" && (
-    <motion.div
-      key="workContent"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.3 }}
-      className="px-4 sm:px-6 md:px-8 py-6 max-w-5xl mx-auto text-white"
-    >
-    </motion.div>
-  )}
-
-  {openMenu === "Information" && (
-    <InformationContent key="infoContent" selected={active} />
-  )}
-</AnimatePresence>
-
+      <div className="fixed bottom-6 right-3 z-50"> <a href="https://wa.me/91XXXXXXXXX?text=Hello How can I help you?" target="_blank" rel="noopener noreferrer" > <img src="/whatsapp3.png" width="60" alt="aaaa" className="rounded-full shadow-lg hover:opacity-80 transition" /> </a> </div>
     </div>
-    
   );
 }
