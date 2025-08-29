@@ -4,22 +4,22 @@ const contentData = {
   About: {
     heading: "about",
     text: "Creativity meets strategy. We don't just design—we build scalable brand systems that help businesses grow with purpose. Our approach blends design thinking, user experience, and storytelling to give your brand a voice that resonates.",
-    logos: ["/logo1.png", "/logo2.png"], // replace with your client logos
+    logos: ["/images/meta-color.png", "/images/microsoft.png"], // replace with your client logos
   },
   Team: {
     heading: "Team",
     text: "Our team consists of designers, developers, and strategists working collaboratively.",
-    logos: ["/logo3.png", "/logo4.png"],
+    logos: ["/images/meta-color.png", "/images/microsoft.png"],
   },
   Process: {
     heading: "Process",
     text: "We follow a structured process from research to design to deployment.",
-    logos: ["/logo5.png", "/logo6.png"],
+    logos: ["/images/meta-color.png", "/images/microsoft.png"],
   },
   Contact: {
     heading: "Contact Us",
     text: "Reach us at contact@noircase.com or call +123 456 7890.",
-    logos: ["/logo7.png", "/logo8.png"],
+    logos: ["/images/meta-color.png", "/images/microsoft.png"],
   },
 };
 
