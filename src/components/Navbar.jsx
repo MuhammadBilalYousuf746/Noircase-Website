@@ -169,7 +169,7 @@ export default function Navbar({ onFilter, openMenu, setOpenMenu, active, setAct
             </button>
           ))}
       </div>
-      <div className="fixed bottom-6 right-3 z-50"> <a href="https://wa.me/91XXXXXXXXX?text=Hello How can I help you?" target="_blank" rel="noopener noreferrer" > <img src="/whatsapp3.png" width="60" alt="aaaa" className="rounded-full shadow-lg hover:opacity-80 transition" /> </a> </div>
+      <div className="fixed bottom-6 right-3 z-50"> <a href="https://wa.me/923333653273?text=Hello How can I help you?" target="_blank" rel="noopener noreferrer" > <img src="/whatsapp3.png" width="60" alt="watsapp-contact" className="rounded-full shadow-lg hover:opacity-80 transition" /> </a> </div>
     </div>
   );
 }
