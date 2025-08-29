@@ -2,24 +2,41 @@ import { motion } from "framer-motion";
 
 const contentData = {
   About: {
-    heading: "about",
-    text: "Creativity meets strategy. We don't just design—we build scalable brand systems that help businesses grow with purpose. Our approach blends design thinking, user experience, and storytelling to give your brand a voice that resonates.",
-    logos: ["/logo1.png", "/logo2.png"], // replace with your client logos
+    heading: "About",
+    text: "Noir Case exists to transform complexity into clarity. Founded on the principle that every brand and every space tells a story, we combine strategic insight with creative passion to craft experiences that resonate and endure. Based in Islamabad, our multidisciplinary team blends design, technology,and narrative to deliver end-to-end solutions—ensuring each project, no matter how intricate, emerges as a clear, compelling statement",
+    heading2: "Our",
+    heading3: "Story",
+    heading4: "Philosophy",
+    // logos: []   // optional: you can add empty array here too
   },
   Team: {
     heading: "Team",
-    text: "Our team consists of designers, developers, and strategists working collaboratively.",
-    logos: ["/logo3.png", "/logo4.png"],
+    th1:"Meet the",
+    th2:"Board",
+    th3: "Strategic",
+    th4: "Alliance",
+    igh1:"Naseer Ud Din Ali Ansari",
+    igs1:"Founder & CEO",
+    igh2:"Taha Ali Haroon",
+    igs2:"Partner - (UK)",
+    igh3:"Syed Saud Ahmed",
+    igs3:"Business Consultant",
+    igh4:"Mohammed Suhaib (FCCA)",
+    igs4:"Goble Expansion Advisor",
+    logos: ["/team1.jpg", "/team2.jpg", "/team3.jpg", "/team4.jpg"],
+    newTeamLogos: ["/team1.1-rbg.png", "/team1.2-rbg.png", "/team1.3-rbg.png"],
   },
   Process: {
     heading: "Process",
-    text: "We follow a structured process from research to design to deployment.",
-    logos: ["/logo5.png", "/logo6.png"],
+    psh1: "What We",
+    psh2: "Do",
+    psh3: "Our",
+    psh4: "Mile",
+    psh5: "stones",
+    psh6: "Process",
   },
   Contact: {
     heading: "Contact Us",
-    text: "Reach us at contact@noircase.com or call +123 456 7890.",
-    logos: ["/logo7.png", "/logo8.png"],
   },
 };
 
