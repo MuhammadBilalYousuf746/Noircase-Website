@@ -3,6 +3,7 @@ import './App.css';
 import Portfolio from "./components/Portfolio";
 import InformationContent from "./components/InformationContent";
 import Login from "./components/Login";
+import BookCallForm from "./components/BookCallForm"; // 👈 ye import add karo
 
 function App() {
   return (
@@ -15,9 +16,13 @@ function App() {
 
           {/* Login Page */}
           <Route path="/login" element={<Login />} />
-{/* Information Page */}
+
+          {/* Information Page */}
           <Route path="/InformationContent" element={<InformationContent />} />
-          </Routes>
+
+          {/* Book a Call Page */}
+          <Route path="/book-call" element={<BookCallForm />} />
+        </Routes>
       </div>
     </Router>
   );

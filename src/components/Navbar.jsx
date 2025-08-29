@@ -6,7 +6,7 @@ import { motion, useViewportScroll, useTransform } from "framer-motion";
 const workCategories = ["All", "Branding", "UIUX", "Web Designs", "Packaging"];
 
 export default function Navbar({ onFilter, openMenu, setOpenMenu, active, setActive }) {
-  const [menuOpen, setMenuOpen] = useState(false); 
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const { scrollY } = useViewportScroll();
   const opacity = useTransform(scrollY, [0, 200], [1, 0]);
@@ -37,25 +37,22 @@ export default function Navbar({ onFilter, openMenu, setOpenMenu, active, setAct
         <div className="relative">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 sm:py-2 rounded-md font-medium text-white transition-all duration-300 transform ${
-              menuOpen ? "scale-95 bg-gray-800" : "hover:scale-105 hover:bg-gray-700"
-            }`}
+            className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 sm:py-2 rounded-md font-medium text-white transition-all duration-300 transform ${menuOpen ? "scale-95 bg-gray-800" : "hover:scale-105 hover:bg-gray-700"
+              }`}
           >
             Menu <Menu size={18} className="sm:hidden md:block" />
           </button>
 
           {/* Dropdown Menu */}
           <div
-            className={`absolute right-0 mt-2 w-36 sm:w-44 bg-[#1E1E1E] border border-gray-700 rounded-lg shadow-lg flex flex-col gap-1 sm:gap-2 overflow-hidden transition-all duration-500 ease-in-out transform ${
-              menuOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
-            }`}
+            className={`absolute right-0 mt-2 w-36 sm:w-44 bg-[#1E1E1E] border border-gray-700 rounded-lg shadow-lg flex flex-col gap-1 sm:gap-2 overflow-hidden transition-all duration-500 ease-in-out transform ${menuOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
+              }`}
           >
             <button
-              className={`text-left px-2 sm:px-3 py-1 sm:py-2 rounded-md transition-all duration-300 ${
-                openMenu === "Work"
+              className={`text-left px-2 sm:px-3 py-1 sm:py-2 rounded-md transition-all duration-300 ${openMenu === "Work"
                   ? "bg-gray-700 text-white"
                   : "text-gray-300 hover:bg-gray-600"
-              }`}
+                }`}
               onClick={() => {
                 setOpenMenu("Work");
                 setActive("All");
@@ -66,11 +63,10 @@ export default function Navbar({ onFilter, openMenu, setOpenMenu, active, setAct
             </button>
 
             <button
-              className={`text-left px-2 sm:px-3 py-1 sm:py-2 rounded-md transition-all duration-300 ${
-                openMenu === "Information"
+              className={`text-left px-2 sm:px-3 py-1 sm:py-2 rounded-md transition-all duration-300 ${openMenu === "Information"
                   ? "bg-gray-700 text-white"
                   : "text-gray-300 hover:bg-gray-600"
-              }`}
+                }`}
               onClick={() => {
                 setOpenMenu("Information");
                 setActive("About");
@@ -111,9 +107,13 @@ export default function Navbar({ onFilter, openMenu, setOpenMenu, active, setAct
             <button className="bg-white text-black font-semibold px-4 py-2 rounded-md border border-white hover:bg-black hover:text-white transition">
               Explore Projects
             </button>
-            <button className="bg-black text-white font-semibold px-4 py-2 rounded-md border border-white hover:bg-white hover:text-black transition">
+
+            <Link
+              to="/book-call"
+              className="bg-black text-white font-semibold px-4 py-2 rounded-md border border-white hover:bg-white hover:text-black transition"
+            >
               Book a Call
-            </button>
+            </Link>
           </div>
         </motion.div>
       </div>
@@ -121,9 +121,8 @@ export default function Navbar({ onFilter, openMenu, setOpenMenu, active, setAct
       {/* Row 2: Work & Information Options */}
       <div className="flex flex-wrap justify-center gap-4 sm:gap-8 py-1 sm:py-2 border-t border-gray-700 text-sm sm:text-base">
         <button
-          className={`font-semibold transition-colors duration-300 ${
-            openMenu === "Work" ? "text-white border-b-2 border-white" : "text-gray-400 hover:text-white"
-          }`}
+          className={`font-semibold transition-colors duration-300 ${openMenu === "Work" ? "text-white border-b-2 border-white" : "text-gray-400 hover:text-white"
+            }`}
           onClick={() => {
             setOpenMenu("Work");
             setActive("All");
@@ -133,9 +132,8 @@ export default function Navbar({ onFilter, openMenu, setOpenMenu, active, setAct
         </button>
 
         <button
-          className={`font-semibold transition-colors duration-300 ${
-            openMenu === "Information" ? "text-white border-b-2 border-white" : "text-gray-400 hover:text-white"
-          }`}
+          className={`font-semibold transition-colors duration-300 ${openMenu === "Information" ? "text-white border-b-2 border-white" : "text-gray-400 hover:text-white"
+            }`}
           onClick={() => {
             setOpenMenu("Information");
             setActive("About");
@@ -152,9 +150,8 @@ export default function Navbar({ onFilter, openMenu, setOpenMenu, active, setAct
             <button
               key={category}
               onClick={() => handleClick(category)}
-              className={`transition-colors duration-300 ${
-                active === category ? "text-white font-semibold" : "text-gray-400 hover:text-white"
-              }`}
+              className={`transition-colors duration-300 ${active === category ? "text-white font-semibold" : "text-gray-400 hover:text-white"
+                }`}
             >
               {category}
             </button>
@@ -165,9 +162,8 @@ export default function Navbar({ onFilter, openMenu, setOpenMenu, active, setAct
             <button
               key={info}
               onClick={() => setActive(info)}
-              className={`px-3 py-1 rounded-md transition-colors duration-300 ${
-                active === info ? "text-white font-semibold border-b-2 border-white" : "text-gray-400 hover:text-white"
-              }`}
+              className={`px-3 py-1 rounded-md transition-colors duration-300 ${active === info ? "text-white font-semibold border-b-2 border-white" : "text-gray-400 hover:text-white"
+                }`}
             >
               {info}
             </button>

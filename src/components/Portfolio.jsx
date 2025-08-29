@@ -5,11 +5,11 @@ import InformationContent from "./InformationContent"; // ✅ import info conten
 
 // Sample portfolio items
 const portfolioItems = [
-  { id: 1, title: "Branding 1", category: "Branding", img: "/images/img1.jpg" },
-  { id: 2, title: "UI 1", category: "UIUX", img: "/images/img2.jpg" },
-  { id: 3, title: "Web 1", category: "Packaging", img: "/images/img3.jpg" },
-  { id: 4, title: "Branding 2", category: "Branding", img: "/images/img4.jpg" },
-  { id: 5, title: "Illustration 1", category: "Web Designs", img: "/images/img5.jpg" },
+  { id: 1, title: "Branding 1", category: "Branding", img: "/images/meta-color.png" },
+  { id: 2, title: "UI 1", category: "UIUX", img: "/images/meta-color.png" },
+  { id: 3, title: "Web 1", category: "Packaging", img: "/images/meta-color.png" },
+  { id: 4, title: "Branding 2", category: "Branding", img: "/images/meta-color.png" },
+  { id: 5, title: "Illustration 1", category: "Web Designs", img: "/images/meta-color.png" },
 ];
 
 export default function Portfolio() {
