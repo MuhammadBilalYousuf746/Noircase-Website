@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 export default function Login() {
+  const navigate = useNavigate();
+
   return (
     <div className="dark bg-black text-white min-h-screen flex flex-col items-center justify-center px-4">
       {/* Logo + Title */}
@@ -13,11 +17,21 @@ export default function Login() {
         </h1>
       </div>
 
-      {/* Login Form */}
+      {/* Login Form with Back Button */}
       <div className="bg-gray-900 shadow-lg rounded-xl p-6 sm:p-8 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
+        
+        {/* Back Button inside the form box */}
+        <button
+          onClick={() => navigate(-1)}
+          className="mb-4 text-gray-300 hover:text-white flex items-center"
+        >
+          ← Back
+        </button>
+
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-100">
           Login
         </h2>
+
         <form className="space-y-4">
           <input
             type="email"
