@@ -83,21 +83,12 @@ export default function Portfolio() {
             </motion.div>
           )}
           
+      <div className="flex justify-center gap-4 mt-6">
+        <button className="bg-gray-800 text-white font-semibold px-4 py-2 rounded-md hover:bg-white hover:text-black transition">
+          Explore all Projects
+        </button>
+      </div>
         </AnimatePresence>
-        <div className="flex justify-center gap-4 mt-6">
-  {openMenu === "Work" && (
-    <button className="bg-gray-800 text-white font-semibold px-4 py-2 rounded-md hover:bg-white hover:text-black transition">
-      Explore all Projects
-    </button>
-  )}
-
-  {openMenu === "Information" && (
-    <button className="bg-gray-800 text-white font-semibold px-4 py-2 rounded-md hover:bg-white hover:text-black transition">
-      Contact Us
-    </button>
-  )}
-</div>
-
         
       </div>
 
