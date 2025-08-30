@@ -5,8 +5,21 @@ export default function BookCallForm() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black">
-      <div className="bg-gray-800 text-white shadow-lg rounded-lg p-6 w-full max-w-md">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white px-4">
+      {/* Logo + Title */}
+      <div className="flex items-center justify-center gap-3 sm:gap-4 mb-8">
+        <img
+          src="/noircaselogo.png"
+          alt="Website Logo"
+          className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-16 lg:w-16 object-contain"
+        />
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+          <b>noir</b>case
+        </h1>
+      </div>
+
+      {/* Form Box */}
+      <div className="bg-gray-800 shadow-lg rounded-lg p-6 sm:p-8 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
         {/* Back Button */}
         <button
           onClick={() => navigate(-1)}
@@ -15,8 +28,10 @@ export default function BookCallForm() {
           ← Back
         </button>
 
-        <h2 className="text-2xl font-bold mb-4 text-center">Book a Call</h2>
-        
+        <h2 className="text-2xl font-bold mb-6 text-center text-gray-100">
+          Book a Call
+        </h2>
+
         <form className="flex flex-col gap-4">
           <input
             type="text"
