@@ -6,7 +6,7 @@ export default function BookCallForm() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white px-4">
-      {/* Logo + Title */}
+      {}
       <div className="flex items-center justify-center gap-3 sm:gap-4 mb-8">
         <img
           src="/noircaselogo.png"
