@@ -1,11 +1,47 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 
-export default function Login() {
+export default function Login({ setIsLoggedIn }) {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const res = await axios.post("http://localhost:5000/login", {
+        email,
+        password,
+      });
+
+      if (res.data.success) {
+        alert("✅ Login successful!");
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("userEmail", email);
+        if (res.data.token) {
+          localStorage.setItem("authToken", res.data.token);
+        }
+
+        setIsLoggedIn(true);
+        navigate("/bookings");
+      } else {
+        alert("❌ Invalid credentials");
+      }
+    } catch (err) {
+      console.error("Login Error:", err);
+      alert("❌ Error while login, please try again");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <div className="dark bg-black text-white min-h-screen flex flex-col items-center justify-center px-4">
-      {/* Logo + Title */}
+    <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white px-4">
+      {/* ✅ Logo + Title (same as BookCallForm) */}
       <div className="flex items-center justify-center gap-3 sm:gap-4 mb-8">
         <img
           src="/noircaselogo.png"
@@ -17,37 +53,47 @@ export default function Login() {
         </h1>
       </div>
 
-      {/* Login Form with Back Button */}
-      <div className="bg-gray-900 shadow-lg rounded-xl p-6 sm:p-8 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
-        
-        {/* Back Button inside the form box */}
+      {/* ✅ Form Box (same style as BookCallForm) */}
+      <div className="bg-gray-800 shadow-lg rounded-lg p-6 sm:p-8 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
+        {/* Back Button */}
         <button
-          onClick={() => navigate(-1)}
+          onClick={() => navigate("/")}
           className="mb-4 text-gray-300 hover:text-white flex items-center"
         >
           ← Back
         </button>
 
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-100">
-          Login
+          Admin Login
         </h2>
 
-        <form className="space-y-4">
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
           <input
             type="email"
             placeholder="Email"
-            className="w-full border border-gray-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-800 text-white"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="border border-gray-600 bg-gray-700 p-2 rounded text-white placeholder-gray-400"
           />
           <input
             type="password"
             placeholder="Password"
-            className="w-full border border-gray-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-500 bg-gray-800 text-white"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            className="border border-gray-600 bg-gray-700 p-2 rounded text-white placeholder-gray-400"
           />
           <button
             type="submit"
-            className="w-full bg-gray-700 text-white py-2 rounded-lg hover:bg-pink-600 transition-colors"
+            disabled={loading}
+            className={`py-2 rounded transition text-white ${
+              loading
+                ? "bg-gray-600 cursor-not-allowed"
+                : "bg-blue-600 hover:bg-blue-700"
+            }`}
           >
-            Login
+            {loading ? "Logging in..." : "Login"}
           </button>
         </form>
       </div>

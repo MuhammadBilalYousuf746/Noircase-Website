@@ -22,7 +22,7 @@ export default function BookCallForm() {
       <div className="bg-gray-800 shadow-lg rounded-lg p-6 sm:p-8 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
         {/* Back Button */}
         <button
-          onClick={() => navigate(-1)}
+          onClick={() => navigate("/")}
           className="mb-4 text-gray-300 hover:text-white flex items-center"
         >
           ← Back
