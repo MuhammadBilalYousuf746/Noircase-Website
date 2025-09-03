@@ -23,7 +23,7 @@ function App() {
     <Router>
       <div className="bg-gray-100 dark:bg-gray-900 min-h-screen text-gray-900 dark:text-gray-100">
         <Routes>
-          {/* Default homepage */}
+          {}
           <Route path="/" element={<Portfolio />} />
 
           {/* Login Page */}
