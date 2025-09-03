@@ -7,10 +7,12 @@ export default function Login({ setIsLoggedIn }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState(""); // ✅ Alert replace
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setMessage(""); // reset msg
 
     try {
       const res = await axios.post("http://localhost:5000/login", {
@@ -19,7 +21,7 @@ export default function Login({ setIsLoggedIn }) {
       });
 
       if (res.data.success) {
-        alert("✅ Login successful!");
+        setMessage("✅ Login successful!");
         localStorage.setItem("isLoggedIn", "true");
         localStorage.setItem("userEmail", email);
         if (res.data.token) {
@@ -29,11 +31,11 @@ export default function Login({ setIsLoggedIn }) {
         setIsLoggedIn(true);
         navigate("/bookings");
       } else {
-        alert("❌ Invalid credentials");
+        setMessage("❌ Invalid credentials");
       }
     } catch (err) {
       console.error("Login Error:", err);
-      alert("❌ Error while login, please try again");
+      setMessage("❌ Error while login, please try again");
     } finally {
       setLoading(false);
     }
@@ -41,7 +43,7 @@ export default function Login({ setIsLoggedIn }) {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white px-4">
-      {/* ✅ Logo + Title (same as BookCallForm) */}
+      {/* ✅ Logo + Title */}
       <div className="flex items-center justify-center gap-3 sm:gap-4 mb-8">
         <img
           src="/noircaselogo.png"
@@ -53,9 +55,8 @@ export default function Login({ setIsLoggedIn }) {
         </h1>
       </div>
 
-      {/* ✅ Form Box (same style as BookCallForm) */}
+      {/* ✅ Form Box */}
       <div className="bg-gray-800 shadow-lg rounded-lg p-6 sm:p-8 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
-        {/* Back Button */}
         <button
           onClick={() => navigate("/")}
           className="mb-4 text-gray-300 hover:text-white flex items-center"
@@ -66,6 +67,19 @@ export default function Login({ setIsLoggedIn }) {
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-100">
           Admin Login
         </h2>
+
+        {/* ✅ Message Box */}
+        {message && (
+          <div
+            className={`mb-4 text-center p-2 rounded ${
+              message.includes("✅")
+                ? "bg-green-600 text-white"
+                : "bg-red-600 text-white"
+            }`}
+          >
+            {message}
+          </div>
+        )}
 
         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
           <input
