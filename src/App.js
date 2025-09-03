@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import "./App.css";
-import Portfolio from "./components/Portfolio";
-import InformationContent from "./components/InformationContent";
-import Login from "./components/Login";
-import BookCallForm from "./components/BookCallForm";
-import ShowBookings from "./components/ShowBookings";
+import './styles/App.css';
+import Portfolio from "./components/sections/Portfolio";
+import InformationContent from "./components/sections/InformationContent";
+import Login from "./components/forms/Login";
+import BookCallForm from "./components/forms/BookCallForm";
+import ShowBookings from "./components/bookings/ShowBookings";
 import { useState, useEffect } from "react";
 
 function App() {
