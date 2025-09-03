@@ -4,6 +4,6 @@ module.exports = {
   theme: {
     extend: {},
   },
-  darkMode: "class", // 👈 yeh add karna hai
+  darkMode: "class", 
   plugins: [],
 };
