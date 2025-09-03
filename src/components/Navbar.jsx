@@ -143,7 +143,7 @@ export default function Navbar({ onFilter, openMenu, setOpenMenu, active, setAct
         </button>
       </div>
 
-      {/* Row 3: Sub Navbar */}
+      {}
       <div className="flex flex-wrap justify-center gap-3 sm:gap-6 py-2 text-xs sm:text-sm md:text-base transition-all duration-500 ease-in-out">
         {openMenu === "Work" &&
           workCategories.map((category) => (
