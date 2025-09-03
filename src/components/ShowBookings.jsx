@@ -36,7 +36,7 @@ function ShowBookings() {
 
       {/* Main Box */}
       <div className="bg-gray-800 shadow-lg rounded-lg p-6 sm:p-8 w-full max-w-4xl relative">
-        {/* ✅ Stylish Logout Button - right side */}
+        {}
         <div className="flex justify-end mb-4">
           <button
             onClick={handleLogout}
