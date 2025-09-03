@@ -7,8 +7,7 @@ const contentData = {
     heading2: "Our",
     heading3: "Story",
     heading4: "Philosophy",
-    // logos: []   // optional: you can add empty array here too
-  },
+    },
   Team: {
     heading: "Team",
     th1:"Meet the",
