@@ -14,8 +14,8 @@ const portfolioItems = [
 
 export default function Portfolio() {
   const [filter, setFilter] = useState("All");
-  const [openMenu, setOpenMenu] = useState("Work"); // default tab
-  const [active, setActive] = useState("All"); // active category
+  const [openMenu, setOpenMenu] = useState("Work"); 
+  const [active, setActive] = useState("All"); 
 
   const filteredItems =
     filter === "All"
