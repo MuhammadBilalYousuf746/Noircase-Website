@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 function ShowBookings() {
   const [bookings, setBookings] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://localhost:5000/book-bookings")
@@ -12,40 +10,10 @@ function ShowBookings() {
       .catch((err) => console.error(err));
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn");
-    localStorage.removeItem("authToken");
-    localStorage.removeItem("userEmail");
-    navigate("/login");
-    window.location.reload();
-  };
-
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white px-4">
-      {/* ✅ Logo + Title (same as BookCallForm) */}
-      <div className="flex items-center justify-center gap-3 sm:gap-4 mb-8">
-        <img
-          src="/noircaselogo.png"
-          alt="Website Logo"
-          className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-16 lg:w-16 object-contain"
-        />
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
-          <b>noir</b>case
-        </h1>
-      </div>
-
-      {/* Main Box */}
+      {/* ✅ Main Box */}
       <div className="bg-gray-800 shadow-lg rounded-lg p-6 sm:p-8 w-full max-w-4xl relative">
-        {}
-        <div className="flex justify-end mb-4">
-          <button
-            onClick={handleLogout}
-            className="px-4 py-2 rounded-lg bg-red-600 text-white font-semibold shadow-md hover:bg-red-700 transition-all duration-200"
-          >
-            ⎋ Logout
-          </button>
-        </div>
-
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-100">
           All Bookings
         </h2>
