@@ -29,7 +29,7 @@ export default function Login({ setIsLoggedIn }) {
         }
 
         setIsLoggedIn(true);
-        navigate("/bookings");
+        navigate("/admin");
       } else {
         setMessage("❌ Invalid credentials");
       }
